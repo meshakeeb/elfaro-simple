@@ -1,0 +1,59 @@
+$color-aqua: #6ac7a5;
+$color-aqua-light: #4fb08d;
+$color-aqua-lighten: #8de0c2;
+$color-aqua-dark: #459b7b;
+$color-aqua-darken: #53967e;
+
+$color-navy: #2b3647;
+$color-navy-light: #64748b;
+$color-navy-lighten: #e6eaf0;
+$color-navy-dark: #314461;
+
+$color-gray: #6d747f;
+$color-gray-light: #fafafa;
+$color-gray-lighten: #f2f4f7;
+$color-gray-dark: #e4e7ed;
+$color-gray-darken: #bfc0c2;
+
+$color-green: #046c4e;
+$color-green-light: #bcf0da;
+$color-green-lighten: #cdf3e3;
+$color-green-dark: #03543f;
+$color-green-darken: #012018;
+
+$color-red: #f98080;
+$color-red-light: #fbd5d5;
+$color-red-lighten: #fde8e8;
+$color-red-dark: #c81e1e;
+$color-red-darken: #9b1c1c;
+
+:root {
+  --color-aqua: #{$color-aqua};
+  --color-aqua-light: #{$color-aqua-light};
+  --color-aqua-lighten: #{$color-aqua-lighten};
+  --color-aqua-dark: #{$color-aqua-dark};
+  --color-aqua-darken: #{$color-aqua-darken};
+
+  --color-navy: #{$color-navy};
+  --color-navy-light: #{$color-navy-light};
+  --color-navy-lighten: #{$color-navy-lighten};
+  --color-navy-dark: #{$color-navy-dark};
+
+  --color-gray: #{$color-gray};
+  --color-gray-light: #{$color-gray-light};
+  --color-gray-lighten: #{$color-gray-lighten};
+  --color-gray-dark: #{$color-gray-dark};
+  --color-gray-darken: #{$color-gray-darken};
+
+  --color-green: #{$color-green};
+  --color-green-light: #{$color-green-light};
+  --color-green-lighten: #{$color-green-lighten};
+  --color-green-dark: #{$color-green-dark};
+  --color-green-darken: #{$color-green-darken};
+
+  --color-red: #{$color-red};
+  --color-red-light: #{$color-red-light};
+  --color-red-lighten: #{$color-red-lighten};
+  --color-red-dark: #{$color-red-dark};
+  --color-red-darken: #{$color-red-darken};
+}

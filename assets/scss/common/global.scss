@@ -1,0 +1,93 @@
+body {
+  @apply font-sans;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+@media(max-width: 767px) {
+
+.swiper-container {
+  width: calc(100% + 120px)
+}
+
+.swiper-container h2 {
+  min-height: 53px;
+}
+
+.custom-grid [x-bind="image"] {
+  width: 80px;
+}
+
+.custom-grid {
+  padding: 20px 20px 70px;
+  position: relative;
+  display: block;
+}
+
+.custom-grid [x-bind=footer] {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+}
+
+@media(min-width: 768px) and (max-width: 1050px) {
+
+.swiper-container h2 {
+  max-height: 64px;
+  min-height: 64px;
+  overflow: hidden;
+}
+
+}
+
+header .search-label {
+  display: none;
+}
+
+.swiper-container h2 {
+  min-height: 64px;
+}
+
+[x-bind="description"] {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.form-invalid {
+  input:invalid,
+  select:invalid,
+  textarea:invalid {
+    border-color: #f00;
+  }
+}
+
+.input-group {
+  @apply mt-1 rounded border border-gray-darken h-10 px-2.5;
+  @apply bg-white;
+
+  .input-prepend {
+    @apply text-lg pl-1;
+  }
+
+  input {
+    @apply ml-2 box-border h-9 w-full focus:outline-none;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      @apply appearance-none m-0;
+    }
+  }
+}
+
+.no-arrows {
+  &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      @apply appearance-none m-0;
+    }
+}

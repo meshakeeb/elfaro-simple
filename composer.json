@@ -1,0 +1,25 @@
+{
+	"name": "ctv/elfaro",
+	"description": "El Faro is the WordPress theme for El Faro de Redención, a ministry of Haven Ministries.",
+	"type": "wordpress-theme",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Shakeeb Ahmed",
+			"email": "me@shakeebahmed.com",
+			"homepage": "https://shakeebahmed.com"
+		}
+	],
+	"require": {
+		"php": ">=5.6"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload" : {
+		"classmap" : [ "includes/" ],
+		"files": []
+	},
+	"config": {
+		"optimize-autoloader": true
+	}
+}
