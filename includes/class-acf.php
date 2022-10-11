@@ -7,6 +7,8 @@
 
 namespace Elfaro;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Class ACF
  */
@@ -37,6 +39,12 @@ class Acf {
 		}
 
 		$blocks = [
+			[
+				'name'            => 'block-top-section',
+				'title'           => __( 'Top Section', 'elfaro' ),
+				'description'     => __( 'A custom block top section.', 'elfaro' ),
+				'render_template' => 'template-parts/blocks/top-section.php',
+			],
 			[
 				'name'            => 'page-giveup',
 				'title'           => __( 'Give Up', 'elfaro' ),

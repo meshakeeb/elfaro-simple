@@ -32,7 +32,7 @@ mix.alias({
  */
 mix
   .sass( 'assets/scss/theme.scss', 'assets/css/theme.css')
-  .sass( 'assets/scss/editor.scss', 'assets/css/editor.css')
+//   .sass( 'assets/scss/editor.scss', 'assets/css/editor.css')
   .tailwind()
 
 /**

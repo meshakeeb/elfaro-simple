@@ -7,6 +7,8 @@
 
 namespace Elfaro;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Class Theme Setup
  */

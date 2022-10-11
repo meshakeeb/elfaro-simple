@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     './assets/js/**/*.js',
-    './**/*.php',
+    '**/*.php',
   ],
   theme: {
     screens: {

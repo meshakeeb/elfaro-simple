@@ -6,9 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package WordPress
- * @subpackage Twenty_Twenty_One
- * @since Twenty Twenty-One 1.0
+ * @package Elfaro
  */
 
 ?>
@@ -22,11 +20,12 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'twentytwentyone' ); ?></a>
+<div id="app" class="flex flex-col min-h-screen">
 
-	<?php get_template_part( 'template-parts/header/site-header' ); ?>
+	<a class="skip-link screen-reader-text sr-only focus:not-sr-only" href="#main">
+		<?php esc_html_e( 'Skip to content', 'elfaro' ); ?>
+	</a>
 
-	<div id="content" class="site-content">
-		<div id="primary" class="content-area">
-			<main id="main" class="site-main">
+	<?php get_template_part( 'template-parts/header' ); ?>
+
+	<div id="wrap" class="flex flex-col xl:flex-row flex-1">
