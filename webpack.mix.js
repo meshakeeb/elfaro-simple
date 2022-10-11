@@ -13,7 +13,12 @@ mix.webpackConfig(
 		externals: {
 			jquery: 'jQuery',
 			lodash: 'lodash',
-			moment: 'moment'
+			moment: 'moment',
+
+			// WordPress Packages.
+			'@wordpress/blocks': 'wp.blocks',
+			'@wordpress/dom-ready': 'wp.domReady',
+			'@wordpress/edit-post': 'wp.editPost',
 		}
 	}
 )
@@ -36,6 +41,10 @@ mix
 mix.js(
 	'assets/src/theme.js',
 	'assets/js/theme.js',
+)
+mix.js(
+	'assets/src/editor.js',
+	'assets/js/editor.js',
 )
 
 /**

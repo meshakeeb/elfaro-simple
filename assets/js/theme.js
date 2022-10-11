@@ -15,6 +15,16 @@
 /*!********************************!*\
   !*** ./assets/scss/theme.scss ***!
   \********************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/.pnpm/mini-css-extract-plugin@1.6.2_webpack@5.74.0/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/.pnpm/postcss-loader@6.2.1_sat2ilddhdkv6huwh4d4inpfry/node_modules/postcss-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, stat 'includes/class-assets copy.php'\n    at Object.statSync (node:fs:1596:3)\n    at resolveChangedFiles (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/tailwindcss@3.1.8_postcss@8.4.17/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:117:36)\n    at resolvedChangedContent (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/tailwindcss@3.1.8_postcss@8.4.17/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:101:29)\n    at /Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/tailwindcss@3.1.8_postcss@8.4.17/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:163:44\n    at /Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/tailwindcss@3.1.8_postcss@8.4.17/node_modules/tailwindcss/lib/processTailwindFeatures.js:46:11\n    at plugins (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/tailwindcss@3.1.8_postcss@8.4.17/node_modules/tailwindcss/lib/index.js:33:63)\n    at LazyResult.runOnRoot (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/postcss@8.4.17/node_modules/postcss/lib/lazy-result.js:339:16)\n    at LazyResult.runAsync (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/postcss@8.4.17/node_modules/postcss/lib/lazy-result.js:393:26)\n    at LazyResult.async (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/postcss@8.4.17/node_modules/postcss/lib/lazy-result.js:221:30)\n    at LazyResult.then (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/postcss@8.4.17/node_modules/postcss/lib/lazy-result.js:206:17)\n    at processResult (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/webpack@5.74.0_webpack-cli@4.10.0/node_modules/webpack/lib/NormalModule.js:758:19)\n    at /Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/webpack@5.74.0_webpack-cli@4.10.0/node_modules/webpack/lib/NormalModule.js:860:5\n    at /Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/loader-runner@4.3.0/node_modules/loader-runner/lib/LoaderRunner.js:400:11\n    at /Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/loader-runner@4.3.0/node_modules/loader-runner/lib/LoaderRunner.js:252:18\n    at context.callback (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/loader-runner@4.3.0/node_modules/loader-runner/lib/LoaderRunner.js:124:13)\n    at Object.loader (/Users/shakeebahmed/Sites/elfaro/wp-content/themes/elfaro-simple/node_modules/.pnpm/postcss-loader@6.2.1_sat2ilddhdkv6huwh4d4inpfry/node_modules/postcss-loader/dist/index.js:142:7)");
+
+/***/ }),
+
+/***/ "./assets/scss/editor.scss":
+/*!*********************************!*\
+  !*** ./assets/scss/editor.scss ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -111,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/assets/js/theme": 0,
-/******/ 			"assets/css/theme": 0
+/******/ 			"assets/css/editor": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -161,8 +171,9 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["assets/css/theme"], () => (__webpack_require__("./assets/src/theme.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/css/theme"], () => (__webpack_require__("./assets/scss/theme.scss")))
+/******/ 	__webpack_require__.O(undefined, ["assets/css/editor"], () => (__webpack_require__("./assets/src/theme.js")))
+/******/ 	__webpack_require__.O(undefined, ["assets/css/editor"], () => (__webpack_require__("./assets/scss/theme.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["assets/css/editor"], () => (__webpack_require__("./assets/scss/editor.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

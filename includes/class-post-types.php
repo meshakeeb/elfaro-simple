@@ -68,16 +68,13 @@ class Post_Types {
 	 */
 	const SCRIPTURES = 'scripture';
 
-	public function __construct() {
+	public function hooks() {
 		add_action( 'init', [ $this, 'register_series_tax' ] );
 		add_action( 'init', [ $this, 'register_scriptures_tax' ] );
 		add_action( 'init', [ $this, 'register_episodes_cpt' ] );
 		add_action( 'init', [ $this, 'register_people_cpt' ] );
 	}
 
-	/**
-	 * Register Episode custom post type
-	 */
 	public function register_episodes_cpt() {
 		$labels = [
 			'name'               => __( 'Episode', 'elfaro' ),
@@ -114,9 +111,6 @@ class Post_Types {
 		register_post_type( self::EPISODE, $args );
 	}
 
-	/**
-	 * Register People custom post type
-	 */
 	public function register_people_cpt() {
 		$labels = [
 			'name'               => __( 'People', 'elfaro' ),
@@ -153,10 +147,6 @@ class Post_Types {
 		register_post_type( self::PEOPLE, $args );
 	}
 
-
-	/**
-	 * Register Series taxonomy
-	 */
 	public function register_series_tax() {
 		$labels = [
 			'name'          => __( 'Series', 'elfaro' ),
@@ -183,10 +173,6 @@ class Post_Types {
 		register_taxonomy( self::SERIES, [ self::EPISODE ], $args );
 	}
 
-
-	/**
-	 * Register Scriptures taxonomy
-	 */
 	public function register_scriptures_tax() {
 		$labels = [
 			'name'          => __( 'Scriptures', 'elfaro' ),

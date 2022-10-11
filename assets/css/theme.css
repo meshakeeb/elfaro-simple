@@ -461,6 +461,53 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+}
+@media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 768px;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
+}
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 1024px;
+    padding-right: 3.75rem;
+    padding-left: 3.75rem;
+  }
+}
+@media (min-width: 1440px) {
+
+  .container {
+    max-width: 1440px;
+  }
+}
+.static {
+  position: static;
+}
+.relative {
+  position: relative;
+}
+.block {
+  display: block;
+}
+.outline {
+  outline-style: solid;
+}
 :root {
   --color-aqua: #6ac7a5;
   --color-aqua-light: #4fb08d;
