@@ -14,10 +14,6 @@
 
 get_header(); ?>
 
-    @hasSection('sidebar-left')
-      @yield('sidebar-left')
-    @endif
-
 	<div class="flex flex-col flex-1">
 		<div class="flex flex-col xl:flex-row flex-1 justify-center">
 			<main id="main" role="main" class="space-y-5 md:space-y-10 lg:space-y-15 flex-1">
@@ -36,9 +32,6 @@ get_header(); ?>
 				?>
 			</main>
 
-			@hasSection('sidebar-right')
-				@yield('sidebar-right')
-			@endif
 		</div>
 
 		<?php get_template_part( 'template-parts/footer' ); ?>
@@ -47,3 +40,9 @@ get_header(); ?>
 
 <?php
 get_footer();
+
+//   @include('partials.section-carousel', ['post_type' => App\View\Composers\App::$episodes_post_type])
+//   @include('partials.section-carousel', ['post_type' => App\View\Composers\App::$blog_post_type])
+//   @include('partials.imagery-text-section')
+//   @include('partials.section-slides')
+//   @include('partials.donation-section')

@@ -12,7 +12,7 @@
 ?>
 	</div> <!-- /#wrap -->
 
-	@include('partials.player')
+	<?php get_template_part( 'template-parts/player' ); ?>
 
 </div> <!-- /#app -->
 

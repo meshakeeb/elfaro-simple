@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.7",
+    "@wordpress/babel-preset-default": "^7.3.0",
     "autoprefixer": "^10.4.12",
     "browser-sync": "^2.27.10",
     "browser-sync-webpack-plugin": "^2.3.0",

@@ -1,0 +1,80 @@
+input[type="range"].progressbar-range {
+	height: 3px;
+	border-radius: 6px;
+}
+input[type="range"].progressbar-range::-webkit-slider-runnable-track {
+	width: 100%;
+	height: 3px;
+	cursor: pointer;
+	background: linear-gradient(to right, rgba(255,255,255,.3) var(--buffered-width), transparent var(--buffered-width));
+	border-radius: 6px;
+}
+input[type="range"].progressbar-range::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: -1px;
+	width: var(--progress-width);
+	height: 5px;
+	border-radius: 6px;
+	background-color: var(--color-navy-lighten);
+	cursor: pointer;
+}
+input[type="range"].progressbar-range::-webkit-slider-thumb {
+	appearance: none;
+	-webkit-appearance: none;
+	box-sizing: content-box;
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+input[type="range"].progressbar-range::-moz-range-track {
+	width: 100%;
+	height: 3px;
+	cursor: pointer;
+	background: linear-gradient(to right, rgba(255,255,255,.3) var(--buffered-width), transparent var(--buffered-width));
+	border-radius: 6px;
+}
+input[type="range"].progressbar-range::-moz-range-progress {
+	height: 5px;
+	background-color: var(--color-navy-lighten);
+	border-radius: 6px;
+}
+input[type="range"].progressbar-range::-moz-focus-outer {
+	border: 0;
+}
+input[type="range"].progressbar-range::-moz-range-thumb {
+	box-sizing: content-box;
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+input[type="range"].progressbar-range::-ms-track {
+	width: 100%;
+	height: 3px;
+	cursor: pointer;
+	background: transparent;
+	border: solid transparent;
+	color: transparent;
+}
+input[type="range"].progressbar-range::-ms-fill-lower {
+	background-color: var(--color-navy-lighten);
+}
+input[type="range"].progressbar-range::-ms-fill-upper {
+	background: linear-gradient(to right, rgba(255,255,255,.3) var(--buffered-width), transparent var(--buffered-width));
+	border-radius: 6px;
+}
+input[type="range"].progressbar-range::-ms-thumb {
+	box-sizing: content-box;
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	background-color: transparent;
+	cursor: pointer;
+}

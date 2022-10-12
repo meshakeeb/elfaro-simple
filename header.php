@@ -9,6 +9,8 @@
  * @package Elfaro
  */
 
+use Elfaro\Helpers;
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -18,7 +20,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class( 'high' === Helpers::get_bandwidth_speed() ? 'high-speed' : 'low-speed' ); ?>>
 <?php wp_body_open(); ?>
 <div id="app" class="flex flex-col min-h-screen">
 
