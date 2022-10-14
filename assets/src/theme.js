@@ -21,7 +21,7 @@ jQuery( () => {
 
 	jQuery('.js-toggle').on( 'click', function() {
 		const button = jQuery( this )
-		const tagerts = jQuery(button.data('target'))
+		const tagerts = jQuery(button.data('target') || button.data('targets'))
 
 		tagerts.each(function() {
 			const target = jQuery( this )

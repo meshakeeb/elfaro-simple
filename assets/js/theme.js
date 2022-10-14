@@ -320,7 +320,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-toggle').on('click', function () {
     var button = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-    var tagerts = jquery__WEBPACK_IMPORTED_MODULE_0___default()(button.data('target'));
+    var tagerts = jquery__WEBPACK_IMPORTED_MODULE_0___default()(button.data('target') || button.data('targets'));
     tagerts.each(function () {
       var target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
       target.toggle();

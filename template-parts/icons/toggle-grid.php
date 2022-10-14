@@ -1,4 +1,4 @@
-<x-icon.svg viewBox="0 0 10 10" {{ $attributes }} fill="currentColor">
+<svg viewBox="0 0 10 10" <?php echo $attributes; ?> fill="currentColor">
   <g id="Rectangle_Copy_4" data-name="Rectangle Copy 4" transform="translate(0 0)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5">
     <rect width="3.75" height="3.75" rx="1" stroke="none"/>
     <rect x="0.75" y="0.75" width="2.25" height="2.25" rx="0.25" fill="none"/>
@@ -15,4 +15,4 @@
     <rect width="3.75" height="3.75" rx="1" stroke="none"/>
     <rect x="0.75" y="0.75" width="2.25" height="2.25" rx="0.25" fill="none"/>
   </g>
-</x-icon.svg>
+</svg>
