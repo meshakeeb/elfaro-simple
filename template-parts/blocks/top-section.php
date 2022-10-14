@@ -1,6 +1,6 @@
 <?php
 /**
- * Top section block
+ * Block: Top section
  */
 
 use Elfaro\Helpers;
@@ -34,7 +34,7 @@ if ( ! $query->have_posts() ) {
 			'type'          => ! $counter ? 'primary' : 'flat',
 			'extra_classes' => $classes,
 		];
-		get_template_part( 'template-parts/cards/card', get_post_type(), $args );
+		get_template_part( 'template-parts/cards/card', null, $args );
 		$counter++;
 	endwhile;
 	?>

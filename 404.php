@@ -17,19 +17,7 @@ get_header(); ?>
 	<div class="flex flex-col flex-1">
 		<div class="flex flex-col xl:flex-row flex-1 justify-center">
 			<main id="main" role="main" class="space-y-5 md:space-y-10 lg:space-y-15 flex-1">
-				<?php
-				if ( have_posts() ) {
-					// Load posts loop.
-					while ( have_posts() ) {
-						the_post();
-
-						get_template_part( 'template-parts/content/content', get_theme_mod( 'display_excerpt_or_full_post', 'excerpt' ) );
-					}
-				} else {
-					// If no content, include the "No posts found" template.
-					get_template_part( 'template-parts/content/content-none' );
-				}
-				?>
+				<?php get_template_part( 'template-parts/content/content-none' ); ?>
 			</main>
 
 		</div>

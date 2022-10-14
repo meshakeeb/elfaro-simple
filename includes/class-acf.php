@@ -51,6 +51,24 @@ class Acf {
 				'description'     => __( 'A custom block for give up page.', 'elfaro' ),
 				'render_template' => 'template-parts/blocks/page-giveup.php',
 			],
+			[
+				'name'            => 'section-carousel',
+				'title'           => __( 'Section Carousel', 'elfaro' ),
+				'description'     => __( 'A custom block for section carousel.', 'elfaro' ),
+				'render_template' => 'template-parts/blocks/section-carousel.php',
+			],
+			[
+				'name'            => 'section-image',
+				'title'           => __( 'Section Image / Carousel', 'elfaro' ),
+				'description'     => __( 'A custom block for section image / carousel.', 'elfaro' ),
+				'render_template' => 'template-parts/blocks/section-imagery.php',
+			],
+			[
+				'name'            => 'section-donation',
+				'title'           => __( 'Section Donation', 'elfaro' ),
+				'description'     => __( 'A custom block for section donation.', 'elfaro' ),
+				'render_template' => 'template-parts/blocks/section-donation.php',
+			],
 		];
 
 		foreach ( $blocks as $block ) {

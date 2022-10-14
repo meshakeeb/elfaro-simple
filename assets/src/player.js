@@ -17,9 +17,8 @@ class Player {
 		permalink: false,
 		button: false,
 	}
-	show = false
+	button = null
 	play = false
-	loading = false
 	duration = 0
 	currentTime = 0
 	buffered = 0
@@ -27,28 +26,27 @@ class Player {
 
 	constructor() {
 		this.player = jQuery( '.js-player' )
-		this.audio = this.player.find( '.item-audio' )
-		this.progressbar = this.player.find('#progressbar')
+		this.audio = this.player.find( '.item-audio' ).get(0)
 
 		// Item
 		this.itemImage = this.player.find('.item-image')
 		this.itemTitle = this.player.find('.item-title')
 		this.itemPermalink = this.player.find('.item-permalink')
+		this.elemDuration = this.player.find('.js-duration')
+		this.elemCurrentTime = this.player.find('.js-current-time')
 
 		this.events()
 	}
 
 	events() {
-		this.audio
+		jQuery( this.audio )
 			.on( 'timeupdate', () => {
 				this.currentTime = this.audio.currentTime
+				this.updateTimeDuration()
 			})
 			.on( 'durationchange', () => {
 				this.duration = Math.floor( this.audio.duration )
-
-				// progressbar.addEventListener('input', () => {
-				// 	this.audio.currentTime = this.currentTime
-				// })
+				this.updateTimeDuration()
 			})
 			.on( 'progress', () => {
 				if (this.audio.buffered && this.audio.buffered.length > 0) {
@@ -57,18 +55,75 @@ class Player {
 			})
 			.on( 'loadeddata', () => {
 				this.audio.paused && this.audio.play()
-				this.loading = false
 			})
 			.on( 'play', () => {
 				this.play = true
+				this.player.addClass('playing')
+				this.player.removeClass('paused')
 			})
 			.on( 'pause', () => {
 				this.play = false
+				this.player.removeClass('playing')
+				this.player.addClass('paused')
 			})
+
+		this.player.find('.js-toggle-play').on( 'click', () => {
+			this.togglePlay(true)
+		})
+
+		this.player.find('.js-forward').on( 'click', () => {
+			this.audio.currentTime += 15
+		})
+
+		this.player.find('.js-backward').on( 'click', () => {
+			this.audio.currentTime -= 15
+		})
+
+		const playbackRate = this.player.find('.js-toggle-play-rate')
+		playbackRate.on( 'click', () => {
+			if ( this.audio && this.audio.playbackRate) {
+            	this.audio.playbackRate == 2
+					? this.audio.playbackRate = 1
+					: this.audio.playbackRate = this.audio.playbackRate + 0.5
+
+				playbackRate.text(this.audio.playbackRate + 'x')
+          }
+		})
 	}
 
-	setItem( item ) {
+	togglePlay( useButton ) {
+		useButton = useButton || false
+
+		if (useButton) {
+			this.button.trigger('click')
+			return
+		}
+
+		if (this.play) {
+			this.audio.pause()
+			return
+		}
+
+		this.audio.play()
+	}
+
+	updateTimeDuration() {
+		this.player.css({
+			'--progress-width': `${(this.currentTime / this.duration) * 100}%`,
+			'--buffered-width': `${(this.buffered / this.duration) * 100}%`,
+		})
+		this.elemDuration.text(formatTime(this.duration))
+		this.elemCurrentTime.text(formatTime(this.currentTime))
+	}
+
+	setItem( item, button ) {
+		if ( this.item.audio === item.audio ) {
+			this.togglePlay()
+			return
+		}
+
 		this.item = item
+		this.button = button
 
 		this.itemImage.hide()
 		this.itemTitle.hide()
@@ -90,11 +145,11 @@ class Player {
 		}
 
 		if ( this.item.audio ) {
-			this.audio.attr( 'src', this.item.audio )
+			this.audio.src = this.item.audio
 		}
 
 		this.showPlayer()
-		this.audio.get(0).play()
+		this.audio.play()
 	}
 
 	showPlayer() {
@@ -132,35 +187,6 @@ export default function() {
 			image: article.find('img').attr('src'),
 			permalink: article.find('a').attr('href'),
 			button: button
-		})
+		}, button )
 	})
-
-	// player: {
-		// [':style']() {
-		// return {
-		// 	'--progress-width': `${(this.currentTime / this.duration) * 100}%`,
-		// 	'--buffered-width': `${(this.buffered / this.duration) * 100}%`,
-		// }
-		// },
-
-		// ['@play-audio.window']() {
-		// return this.$event.detail.audio && !this.loading
-		// 	? (this.$event.detail.audio == this.item.audio
-		// 		? this.togglePlay()
-		// 		: this.item = (({ audio, title, image, permalink }) => ({ audio, title, image, permalink }))(this.$event.detail)
-		// 	)
-		// 	: false
-		// },
-	// },
-
-	// togglePlay() { this.play = !this.play },
-
-	// togglePlaybackRate() {
-		// if (audio && audio.playbackRate) {
-		// audio.playbackRate == 2
-		// 	? audio.playbackRate = 1
-		// 	: audio.playbackRate = audio.playbackRate + 0.5
-		// this.playbackRate = audio.playbackRate
-		// }
-	// },
 }

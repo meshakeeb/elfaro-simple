@@ -37,6 +37,13 @@ class Assets {
 			'1.0.0'
 		);
 
+		wp_register_style(
+			'swiper',
+			'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css',
+			null,
+			'8'
+		);
+
 		if ( 'low' === $speed ) {
 			wp_dequeue_style( 'wp-block-library' );
 			wp_dequeue_style( 'wp-block-library-theme' );
@@ -48,6 +55,14 @@ class Assets {
 			'https://cdn.jsdelivr.net/npm/doc-cookies@1.1.0/cookies_min.min.js',
 			[ 'jquery' ],
 			'1.1.0',
+			true
+		);
+
+		wp_register_script(
+			'swiper',
+			'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js',
+			null,
+			'8',
 			true
 		);
 

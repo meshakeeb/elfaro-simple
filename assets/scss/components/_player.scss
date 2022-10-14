@@ -78,3 +78,15 @@ input[type="range"].progressbar-range::-ms-thumb {
 	background-color: transparent;
 	cursor: pointer;
 }
+
+.btn-play,
+.btn-pause {
+	@apply hidden;
+}
+
+.playing .btn-pause {
+	@apply block;
+}
+.paused .btn-play {
+	@apply block;
+}

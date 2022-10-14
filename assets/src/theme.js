@@ -1,5 +1,8 @@
 import jQuery from 'jquery'
 import player from './player'
+import carousels from './swiper'
+import tabs from './tabs'
+import wizard from './wizard'
 
 jQuery( () => {
 	jQuery('.js-toggle-speed').on( 'click', function() {
@@ -27,4 +30,7 @@ jQuery( () => {
 	})
 
 	player()
+	carousels()
+	tabs()
+	wizard()
 })

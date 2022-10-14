@@ -14,9 +14,9 @@
 
 get_header(); ?>
 
-    @hasSection('sidebar-left')
+    <!-- @hasSection('sidebar-left')
       @yield('sidebar-left')
-    @endif
+    @endif -->
 
 	<div class="flex flex-col flex-1">
 		<div class="flex flex-col xl:flex-row flex-1 justify-center">
@@ -36,9 +36,9 @@ get_header(); ?>
 				?>
 			</main>
 
-			@hasSection('sidebar-right')
+			<!-- @hasSection('sidebar-right')
 				@yield('sidebar-right')
-			@endif
+			@endif -->
 		</div>
 
 		<?php get_template_part( 'template-parts/footer' ); ?>

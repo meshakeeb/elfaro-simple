@@ -36,52 +36,98 @@ var Player = /*#__PURE__*/function () {
       permalink: false,
       button: false
     });
-    _defineProperty(this, "show", false);
+    _defineProperty(this, "button", null);
     _defineProperty(this, "play", false);
-    _defineProperty(this, "loading", false);
     _defineProperty(this, "duration", 0);
     _defineProperty(this, "currentTime", 0);
     _defineProperty(this, "buffered", 0);
     _defineProperty(this, "playbackRate", 1);
     this.player = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-player');
-    this.audio = this.player.find('.item-audio');
-    this.progressbar = this.player.find('#progressbar');
+    this.audio = this.player.find('.item-audio').get(0);
 
     // Item
     this.itemImage = this.player.find('.item-image');
     this.itemTitle = this.player.find('.item-title');
     this.itemPermalink = this.player.find('.item-permalink');
+    this.elemDuration = this.player.find('.js-duration');
+    this.elemCurrentTime = this.player.find('.js-current-time');
     this.events();
   }
   _createClass(Player, [{
     key: "events",
     value: function events() {
       var _this = this;
-      this.audio.on('timeupdate', function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.audio).on('timeupdate', function () {
         _this.currentTime = _this.audio.currentTime;
+        _this.updateTimeDuration();
       }).on('durationchange', function () {
         _this.duration = Math.floor(_this.audio.duration);
-
-        // progressbar.addEventListener('input', () => {
-        // 	this.audio.currentTime = this.currentTime
-        // })
+        _this.updateTimeDuration();
       }).on('progress', function () {
         if (_this.audio.buffered && _this.audio.buffered.length > 0) {
           _this.buffered = _this.audio.buffered.end(_this.audio.buffered.length - 1);
         }
       }).on('loadeddata', function () {
         _this.audio.paused && _this.audio.play();
-        _this.loading = false;
       }).on('play', function () {
         _this.play = true;
+        _this.player.addClass('playing');
+        _this.player.removeClass('paused');
       }).on('pause', function () {
         _this.play = false;
+        _this.player.removeClass('playing');
+        _this.player.addClass('paused');
+      });
+      this.player.find('.js-toggle-play').on('click', function () {
+        _this.togglePlay(true);
+      });
+      this.player.find('.js-forward').on('click', function () {
+        _this.audio.currentTime += 15;
+      });
+      this.player.find('.js-backward').on('click', function () {
+        _this.audio.currentTime -= 15;
+      });
+      var playbackRate = this.player.find('.js-toggle-play-rate');
+      playbackRate.on('click', function () {
+        if (_this.audio && _this.audio.playbackRate) {
+          _this.audio.playbackRate == 2 ? _this.audio.playbackRate = 1 : _this.audio.playbackRate = _this.audio.playbackRate + 0.5;
+          playbackRate.text(_this.audio.playbackRate + 'x');
+        }
       });
     }
   }, {
+    key: "togglePlay",
+    value: function togglePlay(useButton) {
+      useButton = useButton || false;
+      if (useButton) {
+        this.button.trigger('click');
+        return;
+      }
+      if (this.play) {
+        this.audio.pause();
+        return;
+      }
+      this.audio.play();
+    }
+  }, {
+    key: "updateTimeDuration",
+    value: function updateTimeDuration() {
+      this.player.css({
+        '--progress-width': "".concat(this.currentTime / this.duration * 100, "%"),
+        '--buffered-width': "".concat(this.buffered / this.duration * 100, "%")
+      });
+      this.elemDuration.text(formatTime(this.duration));
+      this.elemCurrentTime.text(formatTime(this.currentTime));
+    }
+  }, {
     key: "setItem",
-    value: function setItem(item) {
+    value: function setItem(item, button) {
+      if (this.item.audio === item.audio) {
+        this.togglePlay();
+        return;
+      }
       this.item = item;
+      this.button = button;
       this.itemImage.hide();
       this.itemTitle.hide();
       this.itemPermalink.hide();
@@ -98,10 +144,10 @@ var Player = /*#__PURE__*/function () {
         this.itemPermalink.show();
       }
       if (this.item.audio) {
-        this.audio.attr('src', this.item.audio);
+        this.audio.src = this.item.audio;
       }
       this.showPlayer();
-      this.audio.get(0).play();
+      this.audio.play();
     }
   }, {
     key: "showPlayer",
@@ -139,37 +185,105 @@ var Player = /*#__PURE__*/function () {
       image: article.find('img').attr('src'),
       permalink: article.find('a').attr('href'),
       button: button
+    }, button);
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/src/swiper.js":
+/*!******************************!*\
+  !*** ./assets/src/swiper.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
+  if (undefined === window.Swiper) {
+    return;
+  }
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.swiper-container').each(function () {
+    var swiper = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var config = swiper.hasClass('manual') ? {
+      direction: 'horizontal',
+      slidesPerView: 1
+    } : {
+      direction: 'horizontal',
+      spaceBetween: 20,
+      breakpoints: {
+        1440: {
+          slidesPerView: 3,
+          spaceBetween: 40
+        },
+        768: {
+          slidesPerView: 2
+        },
+        576: {
+          slidesPerView: 3
+        },
+        1: {
+          slidesPerView: 2
+        }
+      },
+      navigation: false
+    };
+    if (swiper.find('.swiper-btn-next').length > 0) {
+      config.navigation = {
+        nextEl: '.swiper-btn-next',
+        prevEl: '.swiper-btn-prev'
+      };
+    }
+    if (swiper.find('.swiper-custom-pagination').length > 0) {
+      config.pagination = {
+        el: '.swiper-custom-pagination',
+        clickable: true,
+        bulletActiveClass: 'bg-navy-light',
+        bulletClass: 'h-2 w-2 rounded-full hover:bg-navy bg-navy-lighten'
+      };
+    }
+    new Swiper(this, config);
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/src/tabs.js":
+/*!****************************!*\
+  !*** ./assets/src/tabs.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
+  jQuery('.js-tabs').each(function () {
+    var wrap = jQuery(this);
+    var tabs = wrap.find('nav > span');
+    var tabsBg = wrap.find('nav > div');
+    var tabsInner = tabsBg.find('span');
+    var contents = wrap.find('> section > div');
+    tabs.on('click', function () {
+      var button = jQuery(this);
+      if (button.hasClass('text-white')) {
+        return;
+      }
+      tabs.removeClass('text-white');
+      button.addClass('text-white');
+      tabsBg.toggleClass('pl-2.5 pr-2.5');
+      tabsInner.toggleClass('transform translate-x-full');
+      var target = jQuery(button.data('target'));
+      contents.hide();
+      target.show();
     });
   });
-
-  // player: {
-  // [':style']() {
-  // return {
-  // 	'--progress-width': `${(this.currentTime / this.duration) * 100}%`,
-  // 	'--buffered-width': `${(this.buffered / this.duration) * 100}%`,
-  // }
-  // },
-
-  // ['@play-audio.window']() {
-  // return this.$event.detail.audio && !this.loading
-  // 	? (this.$event.detail.audio == this.item.audio
-  // 		? this.togglePlay()
-  // 		: this.item = (({ audio, title, image, permalink }) => ({ audio, title, image, permalink }))(this.$event.detail)
-  // 	)
-  // 	: false
-  // },
-  // },
-
-  // togglePlay() { this.play = !this.play },
-
-  // togglePlaybackRate() {
-  // if (audio && audio.playbackRate) {
-  // audio.playbackRate == 2
-  // 	? audio.playbackRate = 1
-  // 	: audio.playbackRate = audio.playbackRate + 0.5
-  // this.playbackRate = audio.playbackRate
-  // }
-  // },
 }
 
 /***/ }),
@@ -184,6 +298,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./assets/src/player.js");
+/* harmony import */ var _swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./swiper */ "./assets/src/swiper.js");
+/* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs */ "./assets/src/tabs.js");
+/* harmony import */ var _wizard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./wizard */ "./assets/src/wizard.js");
+
+
+
 
 
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
@@ -207,7 +327,140 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     });
   });
   (0,_player__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  (0,_swiper__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  (0,_tabs__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  (0,_wizard__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
+
+/***/ }),
+
+/***/ "./assets/src/wizard.js":
+/*!******************************!*\
+  !*** ./assets/src/wizard.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var Wizard = /*#__PURE__*/function () {
+  function Wizard(form) {
+    var _this = this;
+    _classCallCheck(this, Wizard);
+    _defineProperty(this, "form", null);
+    _defineProperty(this, "step", 0);
+    _defineProperty(this, "count", 0);
+    _defineProperty(this, "isThankyou", false);
+    _defineProperty(this, "handleReset", function () {
+      _this.step = 0;
+      _this.isThankyou = false;
+      _this.form.get(0).reset();
+      _this.toggleStep();
+    });
+    _defineProperty(this, "handleBack", function () {
+      _this.step--;
+      _this.toggleStep();
+    });
+    _defineProperty(this, "handleForward", function () {
+      if (_this.canForward()) {
+        _this.step++;
+        _this.toggleStep();
+      } else {
+        _this.steps.removeClass('form-invalid');
+        _this.steps.eq(_this.step).addClass('form-invalid');
+      }
+    });
+    _defineProperty(this, "handleComplete", function () {
+      if (_this.canForward()) {
+        _this.isThankyou = true;
+        _this.toggleStep();
+        var myFormData = new FormData(_this.form.get(0));
+        var formDataObj = {};
+        myFormData.forEach(function (value, key) {
+          return formDataObj[key] = value;
+        });
+        if (undefined !== formDataObj.sa_zip) {
+          formDataObj.ba_zip = formDataObj.sa_zip;
+        }
+        jQuery.ajax({
+          type: 'POST',
+          url: _this.form.attr('action'),
+          data: formDataObj
+        });
+      } else {
+        _this.steps.removeClass('form-invalid');
+        _this.steps.eq(_this.step).addClass('form-invalid');
+      }
+    });
+    this.form = form;
+    this.wrap = form.find('>section');
+    this.thankyou = form.find('> [data-thankyou]');
+    this.btnBack = form.find('.js-back');
+    this.btnNext = form.find('.js-next');
+    this.btnComplete = form.find('.js-complete');
+    this.btnReset = form.find('.js-reset');
+    this.steps = form.find('.js-step');
+    this.count = this.steps.length;
+    this.toggleStep();
+    this.events();
+  }
+  _createClass(Wizard, [{
+    key: "events",
+    value: function events() {
+      this.btnBack.on('click', this.handleBack);
+      this.btnNext.on('click', this.handleForward);
+      this.btnComplete.on('click', this.handleComplete);
+      this.btnReset.on('click', this.handleReset);
+    }
+  }, {
+    key: "canForward",
+    value: function canForward() {
+      var isValid = true;
+      this.form.find(':input[required]:visible').each(function () {
+        if (!this.checkValidity()) {
+          isValid = false;
+          return false;
+        }
+      });
+      return isValid;
+    }
+  }, {
+    key: "toggleStep",
+    value: function toggleStep() {
+      this.steps.addClass('hidden');
+      this.steps.eq(this.step).removeClass('hidden');
+      if (this.isThankyou) {
+        this.wrap.hide();
+        this.thankyou.show();
+      } else {
+        this.wrap.show();
+        this.thankyou.hide();
+      }
+
+      // Buttons.
+      if (this.step > 1) {
+        this.btnBack.removeClass('hidden');
+      }
+      if (this.step === this.count - 1) {
+        this.btnBack.addClass('hidden');
+        this.btnNext.addClass('hidden');
+        this.btnComplete.removeClass('hidden');
+      }
+    }
+  }]);
+  return Wizard;
+}();
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
+  var forms = jQuery('.form-wizard');
+  forms.each(function () {
+    new Wizard(jQuery(this));
+  });
+}
 
 /***/ }),
 
