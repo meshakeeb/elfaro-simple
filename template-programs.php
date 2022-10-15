@@ -2,6 +2,8 @@
 /**
  * The main template file
  *
+ * Template Name: Series Archive page
+ *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
@@ -22,7 +24,7 @@ get_header(); ?>
 		<div class="flex flex-col xl:flex-row flex-1 justify-center">
 
 			<main id="main" role="main" class="space-y-5 md:space-y-10 lg:space-y-15 flex-1">
-				<?php get_template_part( 'template-parts/content/content-archive' ); ?>
+				<?php get_template_part( 'template-parts/content/content-series' ); ?>
 			</main>
 
 		</div>

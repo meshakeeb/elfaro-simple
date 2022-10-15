@@ -21,6 +21,8 @@ class Theme_Setup {
 			add_action( 'init', [ $this, 'disable_emojis' ] );
 			add_filter( 'post_thumbnail_html', '__return_false' );
 		}
+
+		add_filter( 'pre_get_posts', [ $this, 'pre_get_posts' ] );
 	}
 
 	public function setup() {
@@ -161,5 +163,11 @@ class Theme_Setup {
 		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
 		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
 		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	}
+
+	public function pre_get_posts( $query ) {
+		if ( is_tax( Post_Types::SERIES ) ) {
+			$query->set( 'posts_per_page', -1 );
+		}
 	}
 }

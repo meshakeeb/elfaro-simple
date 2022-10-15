@@ -318,12 +318,42 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     docCookies.setItem('hideBandwidthBanner', 1);
     document.getElementById('bandwidth-bar').style.display = 'none';
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-toggle').on('click', function () {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-toggle,.js-toggle-hidden').on('click', function () {
     var button = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
     var tagerts = jquery__WEBPACK_IMPORTED_MODULE_0___default()(button.data('target') || button.data('targets'));
     tagerts.each(function () {
       var target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-      target.toggle();
+      if (button.hasClass('js-toggle-hidden')) {
+        target.toggleClass('hidden');
+      } else {
+        target.toggle();
+      }
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-post-view').each(function () {
+    var wrap = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var tabs = wrap.find('nav > span');
+    var tabsBg = wrap.find('nav > div');
+    var tabsInner = tabsBg.find('span');
+    var postList = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#post-list');
+    var articles = postList.find('> article');
+    tabs.on('click', function () {
+      var button = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+      if (button.hasClass('text-white')) {
+        return;
+      }
+      tabs.removeClass('text-white');
+      button.addClass('text-white');
+      tabsBg.toggleClass('pl-2.5 pr-2.5');
+      tabsInner.toggleClass('transform translate-x-full');
+      if ('.card-grid-item' === button.data('target')) {
+        postList.addClass('md:grid-cols-2 lg:grid-cols-3');
+      } else {
+        postList.removeClass('md:grid-cols-2 lg:grid-cols-3');
+      }
+      var target = jquery__WEBPACK_IMPORTED_MODULE_0___default()(button.data('target'));
+      articles.addClass('hidden');
+      target.removeClass('hidden');
     });
   });
   (0,_player__WEBPACK_IMPORTED_MODULE_1__["default"])();

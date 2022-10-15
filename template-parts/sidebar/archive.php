@@ -21,6 +21,7 @@ $taxonomies = array_map(
 	[ Post_Types::CATEGORIES, Post_Types::SCRIPTURES ]
 );
 
+$is_program = is_page_template( 'template-programs.php' );
 $title = get_queried_object()->name ? get_queried_object()->name : false;
 if ( ! $title ) {
 	$title = get_queried_object()->post_title;
@@ -29,7 +30,15 @@ if ( ! $title ) {
 <div class="md:flex lg:block">
 	<div class="md:w-1/2 lg:w-full">
 		<h1 class="text-navy text-2xl font-serif md:text-3xl lg:text-4xl"><?php echo $title; ?></h1>
-		<div class="text-gray-black font-serif lg:text-xl mt-3 prose"><?php the_field( 'blog_description', 'options' ); ?></div>
+		<div class="text-gray-black font-serif lg:text-xl mt-3 prose">
+			<?php
+			if ( $is_program ) {
+				the_content();
+			} else {
+				the_field( 'blog_description', 'options' );
+			}
+			?>
+		</div>
 	</div>
 
 	<div class="md:w-1/2 lg:w-full md:pl-5 lg:pl-0">
