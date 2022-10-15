@@ -3,6 +3,7 @@ import player from './player'
 import carousels from './swiper'
 import tabs from './tabs'
 import wizard from './wizard'
+import loadMore from './load-more'
 
 jQuery( () => {
 	jQuery('.js-toggle-speed').on( 'click', function() {
@@ -70,4 +71,5 @@ jQuery( () => {
 	carousels()
 	tabs()
 	wizard()
+	loadMore()
 })

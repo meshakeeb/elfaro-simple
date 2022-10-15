@@ -24,7 +24,7 @@ use Elfaro\Helpers;
 <?php wp_body_open(); ?>
 <div id="app" class="flex flex-col min-h-screen">
 
-	<a class="skip-link screen-reader-text sr-only focus:not-sr-only" href="#main">
+	<a class="skip-link screen-reader-text sr-only focus:not-sr-only pl-0" href="#main">
 		<?php esc_html_e( 'Skip to content', 'elfaro' ); ?>
 	</a>
 

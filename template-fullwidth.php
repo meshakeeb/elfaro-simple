@@ -2,6 +2,8 @@
 /**
  * The main template file
  *
+ * Template Name: Page Fullwidth
+ *
  * This is the most generic template file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
@@ -14,15 +16,21 @@
 
 get_header(); ?>
 
-	<aside class="xl:flex xl:flex-col p-5 md:p-15 xl:py-15 w-full xl:w-1/4 bg-gray-light border-r border-gray-lighten">
-		<?php get_template_part( 'template-parts/sidebar/archive' ); ?>
-	</aside>
-
 	<div class="flex flex-col flex-1">
 		<div class="flex flex-col xl:flex-row flex-1 justify-center">
-
 			<main id="main" role="main" class="space-y-5 md:space-y-10 lg:space-y-15 flex-1">
-				<?php get_template_part( 'template-parts/content/content-archive' ); ?>
+				<?php
+				if ( have_posts() ) {
+					// Load posts loop.
+					while ( have_posts() ) {
+						the_post();
+						the_content();
+					}
+				} else {
+					// If no content, include the "No posts found" template.
+					get_template_part( 'template-parts/content/content-none' );
+				}
+				?>
 			</main>
 
 		</div>

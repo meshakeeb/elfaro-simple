@@ -2,6 +2,41 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./assets/src/load-more.js":
+/*!*********************************!*\
+  !*** ./assets/src/load-more.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
+  var container = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#post-list');
+  var loadButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-load-more');
+  loadButton.on('click', 'a', function () {
+    var link = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
+    var href = link.attr('href');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default().get(href, function (response) {
+      var html = jquery__WEBPACK_IMPORTED_MODULE_0___default()(response);
+      container.append(html.find('#post-list').html());
+      var newLink = html.find('.js-load-more a');
+      if (newLink.length > 0) {
+        link.attr('href', newLink.attr('href'));
+      } else {
+        loadButton.hide();
+      }
+    });
+    return false;
+  });
+}
+
+/***/ }),
+
 /***/ "./assets/src/player.js":
 /*!******************************!*\
   !*** ./assets/src/player.js ***!
@@ -301,6 +336,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./swiper */ "./assets/src/swiper.js");
 /* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tabs */ "./assets/src/tabs.js");
 /* harmony import */ var _wizard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./wizard */ "./assets/src/wizard.js");
+/* harmony import */ var _load_more__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./load-more */ "./assets/src/load-more.js");
+
 
 
 
@@ -360,6 +397,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   (0,_swiper__WEBPACK_IMPORTED_MODULE_2__["default"])();
   (0,_tabs__WEBPACK_IMPORTED_MODULE_3__["default"])();
   (0,_wizard__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  (0,_load_more__WEBPACK_IMPORTED_MODULE_5__["default"])();
 });
 
 /***/ }),

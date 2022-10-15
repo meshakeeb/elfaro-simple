@@ -10,12 +10,24 @@ use Elfaro\Helpers;
 $speed = Helpers::get_bandwidth_speed();
 $text = get_field( 'text' );
 $image = get_field( 'image' );
+$transparent = get_field( 'transparent' );
+$reverse = get_field( 'reverse' );
+
+$wrap = Helpers::classnames(
+	'py-7 md:py-15',
+	$transparent ? '' : 'bg-gray-light'
+);
+
+$tabs = Helpers::classnames(
+	'flex flex-col md:h-5/6 lg:col-span-4',
+	$reverse ? 'lg:order-1' : ''
+);
 ?>
-<section class="bg-gray-light py-7 md:py-15">
+<section class="<?php echo $wrap; ?>">
 
 	<div class="container flex flex-col lg:grid lg:grid-cols-10 lg:gap-24 items-center">
 
-		<div class="flex flex-col md:h-5/6 lg:col-span-4">
+		<div class="<?php echo $tabs; ?>">
 
 			<div class="text-sm text-navy tracking-widest uppercase js-tabs">
 

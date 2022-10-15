@@ -6,3 +6,41 @@
 @import 'common/global';
 @import "components/buttons";
 @import "components/player";
+
+.elfaro-contact-form form {
+	@apply font-sans text-xs uppercase tracking-widest;
+}
+
+.elfaro-contact-form .wpforms-field-container {
+	@apply grid gap-2.5;
+}
+
+.elfaro-contact-form .wpforms-submit-container {
+	@apply flex items-center justify-center mt-5;
+}
+
+.elfaro-contact-form .wpforms-field {
+	@apply flex flex-col;
+}
+
+.elfaro-contact-form .wpforms-field-container input,
+.elfaro-contact-form .wpforms-field-container textarea {
+	@apply mt-1 rounded border border-gray-darken px-2.5 text-base;
+}
+
+.elfaro-contact-form .wpforms-field-container input {
+	@apply h-10;
+}
+
+.elfaro-contact-form .wpforms-field-container textarea {
+	@apply h-40;
+}
+
+.elfaro-contact-form .wpforms-has-error input,
+.elfaro-contact-form .wpforms-has-error textarea {
+	@apply border-red-500;
+}
+
+.elfaro-contact-form .wpforms-submit-container button {
+	@apply flex items-center gap-2 rounded-lg text-sm font-sans uppercase tracking-widest transition ease-in-out border border-current hover:text-white px-4 h-10 bg-navy hover:bg-navy-dark text-white;
+}

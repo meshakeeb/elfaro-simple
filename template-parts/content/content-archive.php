@@ -39,7 +39,7 @@ global $wp_query;
 		<?php
 		if ( have_posts() ) {
 			// Load posts loop.
-			$counter = 0;
+			$counter = isset( $_GET['ajax'] ) ? 1 : 0;
 			while ( have_posts() ) {
 				the_post();
 
@@ -59,13 +59,6 @@ global $wp_query;
 
 	</div>
 
-	<?php if ( $wp_query->max_num_pages > 0 ) : ?>
-	<div class="h-12 lg:h-15 mb-10 md:mb-15 lg:mb-20 flex items-center justify-center">
-		<button class="<?php echo Helpers::button_classes( 'bg-navy hover:bg-navy-dark text-base text-white gap-4 md:h-14' ); ?>">
-			<?php Helpers::icon( 'plus', [ 'class' => 'w-4' ] ); ?>
-			<?php esc_html_e( 'Load more results', 'elfaro' ); ?>
-		</button>
-	</div>
-	<?php endif; ?>
+	<?php get_template_part( 'template-parts/ajax-load-more' ); ?>
 
 </section>
